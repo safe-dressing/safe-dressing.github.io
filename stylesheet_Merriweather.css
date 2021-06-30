@@ -82,7 +82,7 @@ th,
 tr,
 p {
   font-family: 'Merriweather', Palatino, Georgia,serif;
-  font-size: 14px
+  font-size: 17px
 }
 
 a {
@@ -91,57 +91,18 @@ a {
 
 strong {
   font-family: 'Merriweather', Palatino, Georgia,serif;
-  font-size: 14px;
+  font-size: 17px;
 }
 
 heading {
   font-family: 'Merriweather', Palatino, Georgia,serif;
-  font-size: 22px;
+  font-size: 25px;
   text-align: center;
-}
-
-subheading {
-  font-family: 'Merriweather', Palatino, Georgia,serif;
-  font-size: 18px;
-  text-align: center;
-}
-
-papertitle {
-  font-family: 'Merriweather', Palatino, Georgia,serif;
-  font-size: 14px;
-  font-weight: 700
 }
 
 name {
   font-family: 'Merriweather', Palatino, Georgia,serif;
-  font-size: 32px;
-}
-
-.one {
-  width: 160px;
-  /*height: 160px;*/
-  height: 90px;
-  position: relative;
-}
-
-.two {
-  width: 160px;
-  /*height: 160px;*/
-  height: 90px;
-  position: absolute;
-  transition: opacity .2s ease-in-out;
-  -moz-transition: opacity .2s ease-in-out;
-  -webkit-transition: opacity .2s ease-in-out;
-}
-
-.fade {
-  transition: opacity .2s ease-in-out;
-  -moz-transition: opacity .2s ease-in-out;
-  -webkit-transition: opacity .2s ease-in-out;
-}
-
-span.highlight {
-  background-color: #ffffd0;
+  font-size: 35px;
 }
 
 /*https://stackoverflow.com/a/9434171/6680310*/
