@@ -58,7 +58,15 @@
         <div style="text-align:center;padding-top:1%;padding-bottom:2%;"><a class="class2" href="https://www.csail.mit.edu/" target="_blank">MIT CSAIL</a></div>
 
 
-        <div style="text-align:center;padding:0px;font-size: 22px;"><a class="class1" href="http://www.roboticsproceedings.org/rss17/p050.html" target="_blank">PDF</a></div>
+
+
+        <div style="text-align:center;padding:0px;font-size: 22px;">
+          <a class="class1" href="http://www.roboticsproceedings.org/rss17/p050.html" target="_blank">PDF</a> /
+          code
+        </div>
+
+
+
 
         <heading style="width:100%">Motivation</heading>
         <img src="images/screenshot_009_ours_blurred_AllBackgroundBlurred_shrinked.png" style="padding-top:2%;display:block;margin-left:auto;margin-right:auto;width:100%;">
@@ -67,15 +75,15 @@
           Planners optimizing for human safety, defined as collision avoidance, might cause the robot to freeze in such a circumstance.
           In this work:
         </p>
-        <p><ul>
+        <p><ol>
           <li>
-            We redefine safety as <b>collision avoidance or safe impact</b>.
+            We redefine safety as <b>collision avoidance or safe impact in the event of a collision</b>.
             This definition enables the robot to dress the person while allowing non-harmful impacts to occur.
           </li>
           <li>
-            We developed a motion planner that <b>guarantees with a high probability that a human would be physically safe</b>, according to our definition, during human-robot interaction.
+            We developed an MPC algorithm that <b>guarantees with a high probability that a human would be physically safe</b>, according to our definition, during human-robot interaction.
           </li>
-        </ul></p>
+        </ol></p>
   
         <p align="justify">
           We intend our method to be used for robots to <b>personalize</b> their <b>assistance in activities of daily living</b> to meet their users' specific needs (Kapusta et al. [20]).
@@ -83,14 +91,21 @@
           The misalignment between the default model and the true user behavior could lead to unsafe robot actions (Swamy et al. [40]).
           Our algorithm can enable the robot to 
           reason about the uncertainty in its user model,
-          safely assist the user,
-          and <b>efficiently collect on-policy data</b>.
+          <b>safely</b> assist the user,
+          and <b>efficiently</b> collect on-policy data.
           With the interactive data, the robot could then adapt its user model and personalize its assistance for the user's needs.
         </p>
+        <br><br>
+
+
+
 
         <heading style="padding:0px;width:100%">Abstract</heading>
         <p align="justify">
-          Ensuring human safety without unnecessarily impacting task efficiency during human-robot interactive manipulation tasks is a critical challenge. In this work, we formally define human physical safety as <b>collision avoidance or safe impact in the event of a collision</b>. We developed a motion planner that <b>theoretically guarantees safety, with a high probability, under the uncertainty in human dynamic models</b>. Our two-pronged definition of safety is able to unlock the planner's potential in finding efficient plans even when collision avoidance is nearly impossible.
+          Ensuring human safety without unnecessarily impacting task efficiency during human-robot interactive manipulation tasks is a critical challenge.
+        </p>
+        <p align="justify">
+          In this work, we formally define human physical safety as <b>collision avoidance or safe impact in the event of a collision</b>. We developed a motion planner that <b>theoretically guarantees safety, with a high probability, under the uncertainty in human dynamic models</b>. Our two-pronged definition of safety is able to unlock the planner's potential in finding efficient plans even when collision avoidance is nearly impossible.
         </p>
         <p align="justify">
           The improved efficiency is empirically demonstrated in both a simulated goal-reaching domain and a real-world robot-assisted dressing domain.
@@ -98,35 +113,45 @@
         <p align="justify">
           We provide a <b>unified view of two approaches</b> to safe human-robot interaction: human-aware motion planners that use predictive human models and reactive controllers that compliantly handle collisions.
         </p>
+        <br><br>
         
-        <heading style="padding:0px;width:100%">Talk video (to appear) (<a class="class1" href="docs/rss-spotlight-v3v4.pdf" target="_blank">slides</a>)</heading>
 
+
+
+        <heading style="padding:0px;width:100%">Talk video (to appear) (<a class="class1" href="docs/rss-spotlight-v3v4.pdf" target="_blank">slides</a>)</heading>
+        <br><br>
+
+
+
+
+        <heading style="padding:0px;width:100%">Contribution 1: a two-pronged definition of human physical safety</heading>
+        <p align="justify">
+          We incorporate insights from the fields of human-aware motion planning and compliant control, as shown in the figure below.
+          Then we formally define <i>human physical safety</i> in <i>human-aware motion planning</i> for <i>interactive manipulation tasks</i> as <b>collision avoidance or safe impact in the event of a collision</b>.
+          This two-pronged definition of safety could infuse flexibility into safe motion planners and enable them to find both safe and efficient plans.
+        </p>
+        <img src="images/safety_definition.png" style="padding-top:0%;display:block;margin-left:auto;margin-right:auto;width:80%;">
+        <br><br>
+
+
+
+
+        <heading style="padding:0px;width:100%">Contribution 2: an MPC algorithm that guarantees human physical safety</heading>
+        <p align="justify">
+          We propose an MPC algorithm that guarantees human physical safety, according to our definition, with a high probability.
+        </p>
         <br>
-        <heading style="padding:0px;width:100%">Assumptions, theorems, and algorithms in this paper</heading>
-        <img src="images/architecture.png" style="padding-top:2%;display:block;margin-left:auto;margin-right:auto;width:100%;">
+        <!-- <subheading style="padding:0px;width:100%">Assumptions, theorems, and algorithms in this paper:</heading> -->
+
+        <img src="images/architecture.png" style="padding-top:0%;display:block;margin-left:auto;margin-right:auto;width:100%;">
 
         <p align="justify">
           Fig. 2: The workflow on the left (in black) represents our human model and prediction.
-          The workflow on the right (in red) represents our safety constraints, where safety is defined as collision avoidance or safe impact.
-          Both workflows merge at the black block representing our MPC that guarantees \(\delta\)-safety (defined in Def. 1).
-        </p>
-        <p align="justify">
-          We denote the robot position and velocity by \((p_R^t, v_R^t)\).
-          Above the dotted line, the human model and safety constraints are formulated for the human position and velocity, \((p_H^t, v_H^t)\).
-          Below the dotted line, the human prediction outer-approximates the future \(p_H^t\) and \(v_H^t\) as ellipsoids, \(E_p^t\) and \(E_v^t\), respectively.
-          The safety constraints below the dotted line are formulated on \((E_p^t, E_v^t)\) and enable our MPC to guarantee \(\delta-\)safety.
-        </p>
-        <p align="justify">
-          In the middle, the cartoon above the dotted line illustrates the human hand dynamic model.
-          The cartoon below illustrates the ellipsoidal prediction and the robot path (in red) that satisfies the safety constraints.
+          The workflow on the right (in red) represents our safety constraints, where safety is defined as collision avoidance or safe impact in the event of a collision.
+          Both workflows merge at the black block representing our MPC algorithm that guarantees \(\delta\)-safety (\(\delta\)-safety is defined in Def. 1).
         </p>
 
-        <br>
-        <heading style="padding:0px;width:100%">Main Theorem</heading>
-
-        <!-- <img src="images/theorem 1.png" style="padding-top:2%;display:block;margin-left:auto;margin-right:auto;width:60%;"> -->
-
-        <table style="padding-top:2%;width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;"><tbody>
+        <table style="padding-top:0%;width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;"><tbody>
           <tr>
             <td style="padding:0px;width:20%;vertical-align:middle"></td>
             <td style="padding:0px;width:60%;vertical-align:middle">
@@ -142,36 +167,72 @@
           </tr>
         </tbody></table>
 
+        <p align="justify">
+          We denote the robot position and velocity at time \(t\) by \((p_R^t, v_R^t)\).
+          Above the dotted line, the human model and safety constraints are formulated for the human position and velocity at time \(t\), denoted by \((p_H^t, v_H^t)\).
+          Below the dotted line, the human prediction outer-approximates the future \(p_H^t\) and \(v_H^t\) as ellipsoids, denoted by \(E_p^t\) and \(E_v^t\), respectively.
+          The safety constraints below the dotted line are formulated for \((E_p^t, E_v^t)\), which enables our MPC to guarantee \(\delta-\)safety.
+        </p>
+        <p align="justify">
+          In the middle, the cartoon above the dotted line illustrates the dynamic model of the human hand.
+          The cartoon below illustrates the ellipsoidal prediction and the robot path (in red) that satisfies the safety constraints.
+        </p>
 
+        <!-- https://stackoverflow.com/a/41171021/6680310 -->
+        <!-- <div style="display:block;margin-left: auto;margin-right:auto;width:15%;">
+        <big><big><big><big>&#8681;</big></big></big></big>
+        </div> -->
+
+        <br><br>
+
+
+
+
+        <heading style="padding:0px;width:100%">Robot-assisted dressing</heading>
+        <p align="justify">
+          Our two-pronged definition of safety is able to unlock the planner's potential in finding efficient plans even when collision avoidance is nearly impossible.
+          The <b>improved efficiency</b> is empirically demonstrated as follows:
+        </p>
+        <p align="justify">
+          In these videos, the progress bars are in green. The dart icon indicates that the robot has completed its task.
+        </p>
+
+        <p align="justify">
+          Case 1: the size of the armhole, denoted by \(d_{HR}^{max}\), is set to \(0.08\)m.
+        </p>
+        <p align="justify">
+          As shown in the video, the proposed safe MPC algorithm, where safety is defined as <i>collision avoidance or safe impact in the event of a collision</i>, achieved a <b>much higher efficiency</b> than the baseline safe MPC algorithm, where safety is defined as <i>collision avoidance</i> only.
+        </p>
+
+        <div style="text-align: center">
+          <iframe width="560" height="315" src="https://www.youtube.com/embed/l9Wg8gv5etg" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </div>
         <br>
-        <heading style="padding:0px;width:100%">Demonstration of robot-assisted dressing</heading>
+
         <p align="justify">
-          In the following videos, the dart icon showing up indicates that the robot has completed its task.
+          Case 2: the size of the armhole, denoted by \(d_{HR}^{max}\), is relaxed to \(0.085\)m.
         </p>
-
         <p align="justify">
-          1. When the size of the armhole, denoted by \(d_{HR}^{max}\), is set to \(0.08\)m, our safe planner, where safety is defined as <i>collision avoidance or safe impact</i>, achieved a <b>much higher efficiency</b> than the baseline safe planner, where safety is defined as <i>collision avoidance</i> only:
-        </p>
-
-        <div style="text-align: center">
-          <iframe width="560" height="315" src="https://www.youtube.com/embed/5olPIuVPd98" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-        </div>
-
-        <p align="justify">
-          2. When the size of the armhole, denoted by \(d_{HR}^{max}\), is relaxed to \(0.085\)m, our safe planner, where safety is defined as <i>collision avoidance or safe impact</i>, still achieved a <b>much higher efficiency</b> than the baseline safe planner, where safety is defined as <i>collision avoidance</i> only:
+          As shown in the video, the proposed safe MPC algorithm, where safety is defined as <i>collision avoidance or safe impact in the event of a collision</i>, still achieved a <b>much higher efficiency</b> than the baseline safe MPC algorithm, where safety is defined as <i>collision avoidance</i> only.
         </p>
 
         <div style="text-align: center">
-          <iframe width="560" height="315" src="https://www.youtube.com/embed/qAsPDTwSHhk" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-        </div>
-
-        <p align="justify">
-          3. When the size of the armhole, denoted by \(d_{HR}^{max}\), is relaxed to \(0.09\)m, our safe planner, where safety is defined as <i>collision avoidance or safe impact</i>, achieved a <b>similar efficiency</b> as the baseline safe planner, where safety is defined as <i>collision avoidance</i> only:
-        </p>
-        <div style="text-align: center">
-          <iframe width="560" height="315" src="https://www.youtube.com/embed/u9AVRBGXRvQ" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+          <iframe width="560" height="315" src="https://www.youtube.com/embed/VGgjXZRvQHY" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
         </div>
         <br>
+
+        <p align="justify">
+          Case 3: the size of the armhole, denoted by \(d_{HR}^{max}\), is relaxed to \(0.09\)m.
+        </p>
+        <p align="justify">
+          As shown in the video, the proposed safe MPC algorithm, where safety is defined as <i>collision avoidance or safe impact in the event of a collision</i>, achieved a <b>similar efficiency</b> as the baseline safe MPC algorithm, where safety is defined as <i>collision avoidance</i> only.
+        </p>
+        <div style="text-align: center">
+          <iframe width="560" height="315" src="https://www.youtube.com/embed/lCsdxYr86fo" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </div>
+        <br>
+
+
 
 
         <heading style="padding:0px;width:100%">Bibtex</heading>
@@ -186,6 +247,9 @@
     DOI       = {10.15607/RSS.2021.XVII.050},
 }
 </pre>
+        <br>
+        <!-- <heading style="padding:0px;width:100%">Sponsor</heading> -->
+        <img style="display:block;margin-left: auto;margin-right:auto;width:15%;" src="images/ONR.png">
 
         <table style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;"><tbody>
           <tr>
