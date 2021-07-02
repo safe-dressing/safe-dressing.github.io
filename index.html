@@ -86,9 +86,9 @@
         </ol></p>
   
         <p align="justify">
-          We intend our method to be used for robots to <b>personalize</b> their <b>assistance in activities of daily living</b> to meet their users' specific needs (Kapusta et al. [20]).
+          We intend our method to be used for robots to <b>personalize</b> their <b>assistance in activities of daily living</b> to meet their users' specific needs [20].
           A robot shipped to a user at home, for example, would only have a default model of how a human could interact with it during robot assistance.
-          The misalignment between the default model and the true user behavior could lead to unsafe robot actions (Swamy et al. [40]).
+          The misalignment between the default model and the true user behavior could lead to unsafe robot actions [40].
           Our algorithm can enable the robot to 
           reason about the uncertainty in its user model,
           <b>safely</b> assist the user,
@@ -118,7 +118,7 @@
 
 
 
-        <heading style="padding:0px;width:100%">Talk video (to appear) (<a class="class1" href="docs/rss-spotlight-v3v4.pdf" target="_blank">slides</a>)</heading>
+        <heading style="padding:0px;width:100%">Talk video (to appear) (<a class="class1" href="docs/rss-spotlight-v6.pdf" target="_blank">slides</a>)</heading>
         <br><br>
 
 
@@ -138,20 +138,21 @@
 
         <heading style="padding:0px;width:100%">Contribution 2: an MPC algorithm that guarantees human physical safety</heading>
         <p align="justify">
-          We propose an MPC algorithm that guarantees human physical safety, according to our definition, with a high probability.
+          We propose an MPC that guarantees human physical safety, according to our definition, with a high probability.
         </p>
         <br>
         <!-- <subheading style="padding:0px;width:100%">Assumptions, theorems, and algorithms in this paper:</heading> -->
 
         <img src="images/architecture.png" style="padding-top:0%;display:block;margin-left:auto;margin-right:auto;width:100%;">
+        <br>
 
         <p align="justify">
-          Fig. 2: The workflow on the left (in black) represents our human model and prediction.
-          The workflow on the right (in red) represents our safety constraints, where safety is defined as collision avoidance or safe impact in the event of a collision.
-          Both workflows merge at the black block representing our MPC algorithm that guarantees \(\delta\)-safety (\(\delta\)-safety is defined in Def. 1).
+          Fig. 2: The workflow on the top (in black) represents our human model and prediction.
+          The workflow on the bottom (in red) represents our safety constraints, where safety is defined as <i>collision avoidance or safe impact in the event of a collision</i>.
+          Both workflows merge at the black block representing our MPC algorithm that guarantees human physical safety, according to our definition, with a high probability.
         </p>
 
-        <table style="padding-top:0%;width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;"><tbody>
+        <!-- <table style="padding-top:0%;width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;"><tbody>
           <tr>
             <td style="padding:0px;width:20%;vertical-align:middle"></td>
             <td style="padding:0px;width:60%;vertical-align:middle">
@@ -165,17 +166,24 @@
             </td>
             <td style="padding:0px;width:20%;vertical-align:middle"></td>
           </tr>
-        </tbody></table>
+        </tbody></table> -->
 
         <p align="justify">
+          On the left to the dotted line, the human model and safety constraints are formulated based on human positions and velocities.
+          As shown on the right to the dotted line, our system constructs ellipsoids to outer-approximate the future human positions and velocities.
+          On the right to the dotted line, the safety constraints are formulated based on these ellipsoids.
+        </p>
+
+        <!-- <p align="justify">
           We denote the robot position and velocity at time \(t\) by \((p_R^t, v_R^t)\).
           Above the dotted line, the human model and safety constraints are formulated for the human position and velocity at time \(t\), denoted by \((p_H^t, v_H^t)\).
           Below the dotted line, the human prediction outer-approximates the future \(p_H^t\) and \(v_H^t\) as ellipsoids, denoted by \(E_p^t\) and \(E_v^t\), respectively.
           The safety constraints below the dotted line are formulated for \((E_p^t, E_v^t)\), which enables our MPC to guarantee \(\delta-\)safety.
-        </p>
+        </p> -->
+
         <p align="justify">
-          In the middle, the cartoon above the dotted line illustrates the dynamic model of the human hand.
-          The cartoon below illustrates the ellipsoidal prediction and the robot path (in red) that satisfies the safety constraints.
+          In the middle, the cartoon on the left to the dotted line illustrates the dynamic model of the human hand.
+          The cartoon on the right to the dotted line illustrates the ellipsoidal prediction and the robot path (in red) that satisfies the safety constraints.
         </p>
 
         <!-- https://stackoverflow.com/a/41171021/6680310 -->
